@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronos | Termos de Uso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #fff; color: #1a1a1e; line-height: 1.6; }
+        .top-banner { background: #0a2a3b; color: #f0ede8; font-size: 0.75rem; padding: 0.5rem 0; text-align: center; }
+        .main-header { background: #fff; border-bottom: 1px solid #eaeef2; position: sticky; top: 0; z-index: 1000; }
+        .header-container, .footer-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .header-row { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 0; gap: 2rem; flex-wrap: wrap; }
+        .logo { font-size: 1.8rem; font-weight: 800; text-decoration: none; color: #0f2c3d; display: flex; align-items: center; gap: 8px; }
+        .logo i, .logo span { color: #c5a257; }
+        .search-wrapper { flex: 1; max-width: 480px; }
+        .search-box { display: flex; background: #f5f7fa; border-radius: 60px; border: 1px solid #e2e8f0; }
+        .search-box input { flex: 1; background: transparent; border: none; padding: 0.8rem 1.2rem; outline: none; }
+        .search-box button { background: transparent; border: none; padding: 0 1.2rem; cursor: pointer; }
+        .header-icons { display: flex; gap: 1.5rem; align-items: center; }
+        .icon-item { color: #2d3e50; font-size: 1.2rem; text-decoration: none; }
+        .nav-row { border-top: 1px solid #f0f2f5; }
+        .nav-menu { display: flex; justify-content: center; gap: 2rem; padding: 0.8rem 0; list-style: none; flex-wrap: wrap; }
+        .nav-menu li a { text-decoration: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #2c3e44; transition: color 0.2s; }
+        .nav-menu li a:hover { color: #c5a257; }
+        .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        @media (max-width: 992px) {
+            .search-wrapper { order: 3; max-width: 100%; width: 100%; margin-top: 0.5rem; }
+            .nav-menu { display: none; flex-direction: column; align-items: flex-start; padding: 1rem 0; }
+            .nav-menu.show { display: flex; }
+            .mobile-toggle { display: block; }
+        }
+        .container-custom { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+        .page-header { background: #f5f7fa; padding: 2rem 0; margin-bottom: 2rem; }
+        .page-header h1 { font-size: 2.5rem; font-weight: 800; color: #0f2c3d; }
+        .content-card { background: #fff; border-radius: 24px; padding: 2rem; border: 1px solid #eef2f8; margin-bottom: 2rem; }
+        .content-card h2 { font-size: 1.5rem; font-weight: 800; color: #0f2c3d; margin-bottom: 1rem; margin-top: 1.5rem; }
+        .content-card h2:first-of-type { margin-top: 0; }
+        .content-card p { margin-bottom: 1rem; color: #4b5565; }
+        .content-card ul { margin-left: 1.5rem; margin-bottom: 1rem; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: #0f2c3d; color: white; padding: 0.6rem 1.5rem; border-radius: 40px; text-decoration: none; font-weight: 600; margin-bottom: 1rem; transition: 0.2s; }
+        .btn-back:hover { background: #c5a257; color: #0f2c3d; }
+        .footer-premium { background: #0a121c; color: #a0a8b5; padding: 3rem 0 1.5rem; margin-top: 2rem; }
+        .footer-main-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+        .footer-logo { font-size: 1.6rem; font-weight: 800; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .footer-logo i, .footer-logo span { color: #c5a257; }
+        .footer-col h4 { color: #fff; font-weight: 700; font-size: 1rem; margin-bottom: 1.2rem; position: relative; display: inline-block; }
+        .footer-col h4:after { content: ''; position: absolute; bottom: -6px; left: 0; width: 35px; height: 2px; background: #c5a257; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.7rem; }
+        .footer-col a { color: #a0a8b5; text-decoration: none; font-size: 0.8rem; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+        .footer-col a i { font-size: 0.7rem; color: #c5a257; }
+        .footer-col a:hover { color: #c5a257; }
+        .footer-bottom { border-top: 1px solid #1e2a36; padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.7rem; }
+        .footer-bottom-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .footer-bottom-links a { color: #a0a8b5; text-decoration: none; }
+        .footer-bottom-links a:hover { color: #c5a257; }
+        @media (max-width: 1024px) { .footer-main-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 768px) { .footer-main-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; text-align: center; } .container-custom, .header-container, .footer-container { padding: 0 1.2rem; } }
+    </style>
+</head>
+<body>
+    <div class="top-banner"><div class="header-container"><i class="fas fa-truck"></i> Frete Grátis | <i class="fas fa-shield-alt"></i> Garantia de 2 anos</div></div>
+    <header class="main-header"><div class="header-container"><div class="header-row"><div class="logo-area"><a href="index.html" class="logo"><i class="fas fa-hourglass-half"></i> CHRONOS<span>WATCH</span></a></div><div class="search-wrapper"><div class="search-box"><input type="text" placeholder="Buscar..."><button><i class="fas fa-search"></i></button></div></div><div class="header-icons"><a href="#" class="icon-item"><i class="far fa-heart"></i></a><a href="#" class="icon-item"><i class="fas fa-bag-shopping"></i></a><a href="#" class="icon-item"><i class="far fa-user"></i></a><button class="mobile-toggle" id="menuToggle"><i class="fas fa-bars"></i></button></div></div><div class="nav-row"><ul class="nav-menu" id="navMenu"><li><a href="index.html">INÍCIO</a></li><li><a href="#">MASCULINO</a></li><li><a href="#">FEMININO</a></li></ul></div></div></header>
+    <div class="page-header"><div class="container-custom"><a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Voltar para loja</a><h1>Termos de Uso</h1><p>Condições gerais para utilização do site e serviços Chronos Watch</p></div></div>
+    <div class="container-custom"><div class="content-card"><h2>1. Aceitação dos termos</h2><p>Ao acessar e utilizar o site Chronos Watch, você concorda integralmente com estes Termos de Uso. Se não concordar, não utilize nossos serviços.</p><h2>2. Cadastro e responsabilidades</h2><p>Para realizar compras, é necessário criar uma conta. Você é responsável pela confidencialidade de seus dados de acesso e por todas as atividades realizadas em sua conta.</p><h2>3. Preços e disponibilidade</h2><p>Os preços exibidos estão em reais (R$). Reservamo-nos o direito de alterar preços e disponibilidade sem aviso prévio. Em caso de erro de digitação, o pedido poderá ser cancelado.</p><h2>4. Política de entrega</h2><p>Os prazos de entrega são informados no momento da compra. Atrasos por motivos alheios à nossa operação (greves, desastres naturais) não nos responsabilizam.</p><h2>5. Propriedade intelectual</h2><p>Todo conteúdo do site (logos, imagens, textos) é propriedade da Chronos Watch ou de seus licenciadores. É proibida a reprodução não autorizada.</p><h2>6. Limitação de responsabilidade</h2><p>A Chronos Watch não se responsabiliza por danos indiretos ou lucros cessantes decorrentes do uso do site.</p><h2>7. Lei aplicável</h2><p>Estes Termos são regidos pela legislação brasileira. Fica eleito o foro da comarca de São Paulo/SP para dirimir quaisquer controvérsias.</p><p><strong>Data da última atualização:</strong> Janeiro de 2025</p></div></div>
+    <footer class="footer-premium"><div class="footer-container"><div class="footer-main-grid"><div class="footer-col"><a href="index.html" class="footer-logo"><i class="fas fa-hourglass-half"></i> CHRONOS<span>WATCH</span></a></div><div class="footer-col"><h4>Links Úteis</h4><ul><li><a href="privacidade.html">Privacidade</a></li><li><a href="termos.html">Termos de Uso</a></li><li><a href="seguranca.html">Segurança</a></li></ul></div><div class="footer-col"><h4>Atendimento</h4><ul><li><a href="ajuda.html">Ajuda</a></li><li><a href="trocas.html">Trocas</a></li></ul></div></div><div class="footer-bottom"><div>Chronos Watch - Relógios de Precisão</div><div class="footer-bottom-links"><a href="mapa-site.html">Mapa do Site</a><a href="etica.html">Canal de Ética</a></div></div></div></footer>
+    <script>document.getElementById('menuToggle').onclick=()=>document.getElementById('navMenu').classList.toggle('show');</script>
+</body>
+</html>
