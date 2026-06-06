@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronos | Trocas e Devoluções</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background: #fff; color: #1a1a1e; line-height: 1.6; }
+        .top-banner { background: #0a2a3b; color: #f0ede8; font-size: 0.75rem; padding: 0.5rem 0; text-align: center; }
+        .main-header { background: #fff; border-bottom: 1px solid #eaeef2; position: sticky; top: 0; z-index: 1000; }
+        .header-container, .footer-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .header-row { display: flex; align-items: center; justify-content: space-between; padding: 1.2rem 0; gap: 2rem; flex-wrap: wrap; }
+        .logo { font-size: 1.8rem; font-weight: 800; text-decoration: none; color: #0f2c3d; display: flex; align-items: center; gap: 8px; }
+        .logo i, .logo span { color: #c5a257; }
+        .search-wrapper { flex: 1; max-width: 480px; }
+        .search-box { display: flex; background: #f5f7fa; border-radius: 60px; border: 1px solid #e2e8f0; }
+        .search-box input { flex: 1; background: transparent; border: none; padding: 0.8rem 1.2rem; outline: none; font-family: 'Montserrat', sans-serif; }
+        .search-box button { background: transparent; border: none; padding: 0 1.2rem; cursor: pointer; color: #6b7280; }
+        .header-icons { display: flex; gap: 1.5rem; align-items: center; }
+        .icon-item { color: #2d3e50; font-size: 1.2rem; text-decoration: none; transition: color 0.2s; }
+        .icon-item:hover { color: #c5a257; }
+        .nav-row { border-top: 1px solid #f0f2f5; }
+        .nav-menu { display: flex; justify-content: center; gap: 2rem; padding: 0.8rem 0; list-style: none; flex-wrap: wrap; }
+        .nav-menu li a { text-decoration: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #2c3e44; transition: color 0.2s; }
+        .nav-menu li a:hover { color: #c5a257; }
+        .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #2d3e50; }
+        @media (max-width: 992px) {
+            .search-wrapper { order: 3; max-width: 100%; width: 100%; margin-top: 0.5rem; }
+            .nav-menu { display: none; flex-direction: column; align-items: flex-start; padding: 1rem 0; gap: 0.8rem; }
+            .nav-menu.show { display: flex; }
+            .mobile-toggle { display: block; }
+        }
+        .container-custom { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+        .page-header { background: #f5f7fa; padding: 2rem 0; margin-bottom: 2rem; }
+        .page-header h1 { font-size: 2.5rem; font-weight: 800; color: #0f2c3d; }
+        .page-header p { color: #4b5565; margin-top: 0.5rem; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: #0f2c3d; color: white; padding: 0.6rem 1.5rem; border-radius: 40px; text-decoration: none; font-weight: 600; margin-bottom: 1rem; transition: 0.2s; border: none; cursor: pointer; }
+        .btn-back:hover { background: #c5a257; color: #0f2c3d; }
+        .content-card { background: #fff; border-radius: 24px; padding: 2rem; border: 1px solid #eef2f8; margin-bottom: 2rem; }
+        .content-card h2 { font-size: 1.5rem; font-weight: 800; color: #0f2c3d; margin-bottom: 1rem; margin-top: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .content-card h2:first-of-type { margin-top: 0; }
+        .content-card h2 i { color: #c5a257; font-size: 1.3rem; }
+        .content-card h3 { font-weight: 700; margin-top: 1.2rem; margin-bottom: 0.5rem; color: #1f2e3a; }
+        .content-card p { margin-bottom: 1rem; color: #4b5565; }
+        .content-card ul, .content-card ol { margin-left: 1.5rem; margin-bottom: 1rem; color: #4b5565; }
+        .content-card li { margin-bottom: 0.5rem; }
+        .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
+        .step { text-align: center; padding: 1.5rem; background: #fafcff; border-radius: 20px; border: 1px solid #eef2f8; }
+        .step-number { width: 40px; height: 40px; background: #c5a257; color: #0f2c3d; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.2rem; margin: 0 auto 1rem; }
+        .step h4 { font-weight: 800; margin-bottom: 0.5rem; }
+        .step p { font-size: 0.85rem; }
+        .info-box { background: #eaf4e8; border-left: 4px solid #c5a257; padding: 1.2rem; border-radius: 12px; margin: 1.5rem 0; }
+        .info-box i { color: #c5a257; margin-right: 10px; }
+        .contact-btn { display: inline-flex; align-items: center; gap: 8px; background: #0f2c3d; color: white; padding: 0.8rem 1.8rem; border-radius: 40px; text-decoration: none; font-weight: 700; transition: 0.2s; margin-top: 0.5rem; }
+        .contact-btn:hover { background: #c5a257; color: #0f2c3d; }
+        .footer-premium { background: #0a121c; color: #a0a8b5; padding: 3rem 0 1.5rem; margin-top: 2rem; }
+        .footer-main-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+        .footer-logo { font-size: 1.6rem; font-weight: 800; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .footer-logo i, .footer-logo span { color: #c5a257; }
+        .footer-col h4 { color: #fff; font-weight: 700; font-size: 1rem; margin-bottom: 1.2rem; position: relative; display: inline-block; }
+        .footer-col h4:after { content: ''; position: absolute; bottom: -6px; left: 0; width: 35px; height: 2px; background: #c5a257; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.7rem; }
+        .footer-col a { color: #a0a8b5; text-decoration: none; font-size: 0.8rem; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+        .footer-col a i { font-size: 0.7rem; color: #c5a257; }
+        .footer-col a:hover { color: #c5a257; transform: translateX(3px); }
+        .footer-bottom { border-top: 1px solid #1e2a36; padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.7rem; }
+        .footer-bottom-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .footer-bottom-links a { color: #a0a8b5; text-decoration: none; }
+        .footer-bottom-links a:hover { color: #c5a257; }
+        @media (max-width: 768px) { .footer-main-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; text-align: center; } .container-custom, .header-container, .footer-container { padding: 0 1.2rem; } }
+    </style>
+</head>
+<body>
+    <div class="top-banner"><div class="header-container"><i class="fas fa-exchange-alt"></i> Trocas fáceis e seguras | <i class="fas fa-headset"></i> Suporte 24h</div></div>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-row">
+                <div class="logo-area"><a href="index.html" class="logo"><i class="fas fa-hourglass-half"></i> CHRONOS<span>WATCH</span></a></div>
+                <div class="search-wrapper"><div class="search-box"><input type="text" placeholder="Buscar produtos..."><button><i class="fas fa-search"></i></button></div></div>
+                <div class="header-icons"><a href="#" class="icon-item"><i class="far fa-heart"></i></a><a href="#" class="icon-item"><i class="fas fa-bag-shopping"></i></a><a href="#" class="icon-item"><i class="far fa-user"></i></a><button class="mobile-toggle" id="menuToggle"><i class="fas fa-bars"></i></button></div>
+            </div>
+            <div class="nav-row"><ul class="nav-menu" id="navMenu"><li><a href="index.html">INÍCIO</a></li><li><a href="#">MASCULINO</a></li><li><a href="#">FEMININO</a></li><li><a href="#">SMARTWATCH</a></li><li><a href="#">LUXO</a></li><li><a href="#">OUTLET</a></li></ul></div>
+        </div>
+    </header>
+    <div class="page-header"><div class="container-custom"><a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Voltar para loja</a><h1>Trocas e Devoluções</h1><p>Política transparente e prática para sua tranquilidade</p></div></div>
+    <div class="container-custom">
+        <div class="content-card">
+            <h2><i class="fas fa-calendar-alt"></i> Prazo para troca ou devolução</h2>
+            <p>Você tem até <strong>30 dias corridos</strong> após o recebimento do produto para solicitar troca ou devolução, de acordo com o Código de Defesa do Consumidor (Art. 49).</p>
+            <div class="info-box"><i class="fas fa-info-circle"></i> <strong>Importante:</strong> O produto deve estar em perfeito estado, sem sinais de uso, com todas as etiquetas originais, manuais, certificados e na embalagem original.</div>
+            
+            <h2><i class="fas fa-sync-alt"></i> Motivos para troca</h2>
+            <ul>
+                <li><strong>Arrependimento ou desistência:</strong> Você pode desistir da compra em até 7 dias corridos a partir do recebimento.</li>
+                <li><strong>Tamanho ou modelo não desejado:</strong> Trocamos por outro modelo, cor ou tamanho disponível em nosso estoque.</li>
+                <li><strong>Produto com defeito de fabricação:</strong> Realizamos a troca imediata ou reembolso integral, sem custos adicionais.</li>
+                <li><strong>Produto diferente do pedido:</strong> Caso tenha recebido um item incorreto, arcaremos com todos os custos de reenvio.</li>
+            </ul>
+            
+            <h2><i class="fas fa-clipboard-list"></i> Como solicitar sua troca</h2>
+            <div class="steps-grid">
+                <div class="step"><div class="step-number">1</div><h4>Entre em contato</h4><p>Envie um e-mail para <strong>trocas@chronoswatch.com.br</strong> com seu número de pedido e motivo da troca.</p></div>
+                <div class="step"><div class="step-number">2</div><h4>Aguardar autorização</h4><p>Nossa equipe analisará sua solicitação em até 2 dias úteis e enviará instruções.</p></div>
+                <div class="step"><div class="step-number">3</div><h4>Enviar o produto</h4><p>Embale o produto com cuidado e envie para nosso endereço (enviaremos o código de postagem se aplicável).</p></div>
+                <div class="step"><div class="step-number">4</div><h4>Análise e conclusão</h4><p>Após o recebimento, analisaremos em até 5 dias úteis e efetuaremos a troca ou reembolso.</p></div>
+            </div>
+            
+            <h2><i class="fas fa-truck"></i> Custos de frete para troca</h2>
+            <ul>
+                <li><strong>Arrependimento / Desistência:</strong> O custo do frete de devolução é por conta do cliente (salvo se a loja oferecer frete grátis na troca).</li>
+                <li><strong>Produto com defeito / Envio errado:</strong> A Chronos Watch arca com 100% dos custos de frete (envio e reenvio).</li>
+                <li><strong>Troca por outro modelo/tamanho:</strong> O cliente paga o frete de devolução, e a Chronos envia o novo produto sem custo adicional (exceto diferença de valor do produto).</li>
+            </ul>
+            
+            <h2><i class="fas fa-money-bill-wave"></i> Reembolso (devolução de valores)</h2>
+            <p>Se optar pela devolução do dinheiro em vez da troca, o reembolso será feito da seguinte forma:</p>
+            <ul>
+                <li><strong>Pagamento via cartão de crédito:</strong> O estorno será solicitado à operadora do cartão em até 5 dias úteis, podendo aparecer em até 2 faturas subsequentes.</li>
+                <li><strong>Pagamento via PIX:</strong> O reembolso é feito na mesma chave PIX utilizada no pagamento em até 3 dias úteis.</li>
+                <li><strong>Pagamento via boleto:</strong> O reembolso será creditado em conta corrente (você deve informar os dados bancários) em até 7 dias úteis.</li>
+            </ul>
+            
+            <h2><i class="fas fa-gavel"></i> Produtos que não aceitamos troca</h2>
+            <ul>
+                <li>Produtos com sinais de uso (arranhões, desgaste na pulseira, vidro riscado).</li>
+                <li>Produtos sem a embalagem original, manuais, certificados ou etiquetas.</li>
+                <li>Produtos personalizados ou gravados sob encomenda (exceto defeito de fabricação).</li>
+                <li>Produtos adquiridos há mais de 30 dias.</li>
+                <li>Pulseiras e acessórios que tenham sido ajustados fora de nossa rede autorizada.</li>
+            </ul>
+            
+            <div class="info-box"><i class="fas fa-shield-alt"></i> <strong>Garantia estendida:</strong> Para acionar a garantia após o período de troca (2 anos), entre em contato com nossa assistência técnica. Consulte a página de <a href="garantia.html" style="color:#c5a257; font-weight:600;">Garantia Estendida</a>.</div>
+            
+            <h2><i class="fas fa-question-circle"></i> Ainda tem dúvidas?</h2>
+            <p>Nossa equipe de atendimento está pronta para ajudar você em cada etapa do processo.</p>
+            <a href="ajuda.html" class="contact-btn"><i class="fab fa-whatsapp"></i> Falar com atendente</a>
+            <a href="mailto:trocas@chronoswatch.com.br" class="contact-btn" style="background:#c5a257; margin-left: 1rem;"><i class="far fa-envelope"></i> trocas@chronoswatch.com.br</a>
+        </div>
+    </div>
+    <footer class="footer-premium">
+        <div class="footer-container">
+            <div class="footer-main-grid">
+                <div class="footer-col"><a href="index.html" class="footer-logo"><i class="fas fa-hourglass-half"></i> CHRONOS<span>WATCH</span></a><p style="margin-top:1rem;">© 2025 - Todos os direitos reservados.</p></div>
+                <div class="footer-col"><h4>Institucional</h4><ul><li><a href="sobre.html"><i class="fas fa-chevron-right"></i> Sobre</a></li><li><a href="lojas.html"><i class="fas fa-chevron-right"></i> Nossas Lojas</a></li><li><a href="trabalhe-conosco.html"><i class="fas fa-chevron-right"></i> Trabalhe Conosco</a></li><li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li><li><a href="investidores.html"><i class="fas fa-chevron-right"></i> Investidores</a></li></ul></div>
+                <div class="footer-col"><h4>Atendimento</h4><ul><li><a href="ajuda.html"><i class="fas fa-chevron-right"></i> Central de Ajuda</a></li><li><a href="trocas.html"><i class="fas fa-chevron-right"></i> Trocas e Devoluções</a></li><li><a href="garantia.html"><i class="fas fa-chevron-right"></i> Garantia Estendida</a></li><li><a href="privacidade.html"><i class="fas fa-chevron-right"></i> Política de Privacidade</a></li><li><a href="termos.html"><i class="fas fa-chevron-right"></i> Termos de Uso</a></li></ul></div>
+                <div class="footer-col"><h4>Segurança</h4><ul><li><a href="seguranca.html"><i class="fas fa-chevron-right"></i> Segurança</a></li><li><a href="etica.html"><i class="fas fa-chevron-right"></i> Canal de Ética</a></li><li><a href="mapa-site.html"><i class="fas fa-chevron-right"></i> Mapa do Site</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><div>Chronos Watch - CNPJ: 12.345.678/0001-99 | Endereço para devoluções: Rua dos Relojoeiros, 100 - São Paulo/SP - CEP: 01234-567</div><div class="footer-bottom-links"><a href="privacidade.html">Privacidade</a><a href="termos.html">Termos</a><a href="seguranca.html">Segurança</a><a href="etica.html">Canal de Ética</a></div></div>
+        </div>
+    </footer>
+    <script>document.getElementById('menuToggle').onclick = () => document.getElementById('navMenu').classList.toggle('show');</script>
+</body>
+</html>
