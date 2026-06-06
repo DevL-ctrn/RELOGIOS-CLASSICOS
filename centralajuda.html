@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; background: #fff; line-height: 1.6; }
+        body { font-family: 'Montserrat', sans-serif; background: #fff; color: #1a1a1e; line-height: 1.6; }
         .top-banner { background: #0a2a3b; color: #f0ede8; font-size: 0.75rem; padding: 0.5rem 0; text-align: center; }
         .main-header { background: #fff; border-bottom: 1px solid #eaeef2; position: sticky; top: 0; z-index: 1000; }
         .header-container, .footer-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
@@ -17,29 +17,55 @@
         .logo i, .logo span { color: #c5a257; }
         .search-wrapper { flex: 1; max-width: 480px; }
         .search-box { display: flex; background: #f5f7fa; border-radius: 60px; border: 1px solid #e2e8f0; }
-        .search-box input { flex: 1; background: transparent; border: none; padding: 0.8rem 1.2rem; outline: none; }
-        .search-box button { background: transparent; border: none; padding: 0 1.2rem; cursor: pointer; }
+        .search-box input { flex: 1; background: transparent; border: none; padding: 0.8rem 1.2rem; outline: none; font-family: 'Montserrat', sans-serif; }
+        .search-box button { background: transparent; border: none; padding: 0 1.2rem; cursor: pointer; color: #6b7280; }
         .header-icons { display: flex; gap: 1.5rem; align-items: center; }
-        .icon-item { color: #2d3e50; font-size: 1.2rem; text-decoration: none; }
+        .icon-item { color: #2d3e50; font-size: 1.2rem; text-decoration: none; transition: color 0.2s; }
+        .icon-item:hover { color: #c5a257; }
         .nav-row { border-top: 1px solid #f0f2f5; }
         .nav-menu { display: flex; justify-content: center; gap: 2rem; padding: 0.8rem 0; list-style: none; flex-wrap: wrap; }
         .nav-menu li a { text-decoration: none; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: #2c3e44; transition: color 0.2s; }
         .nav-menu li a:hover { color: #c5a257; }
-        .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
-        @media (max-width: 992px) { .search-wrapper { order: 3; max-width: 100%; } .nav-menu { display: none; flex-direction: column; } .nav-menu.show { display: flex; } .mobile-toggle { display: block; } }
+        .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #2d3e50; }
+        @media (max-width: 992px) {
+            .search-wrapper { order: 3; max-width: 100%; width: 100%; margin-top: 0.5rem; }
+            .nav-menu { display: none; flex-direction: column; align-items: flex-start; padding: 1rem 0; gap: 0.8rem; }
+            .nav-menu.show { display: flex; }
+            .mobile-toggle { display: block; }
+        }
         .container-custom { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
         .page-header { background: #f5f7fa; padding: 2rem 0; margin-bottom: 2rem; }
         .page-header h1 { font-size: 2.5rem; font-weight: 800; color: #0f2c3d; }
-        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-        .faq-item { background: #fff; border-radius: 20px; border: 1px solid #eef2f8; padding: 1.5rem; }
-        .faq-item h3 { font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
-        .faq-item h3 i { color: #c5a257; }
-        .faq-item p { color: #4b5565; font-size: 0.9rem; }
-        .contact-card { background: #0f2c3d; border-radius: 24px; padding: 2rem; text-align: center; color: white; margin-top: 2rem; }
-        .contact-card h3 { margin-bottom: 0.5rem; }
-        .contact-card a { color: #c5a257; text-decoration: none; font-weight: 700; }
-        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: #0f2c3d; color: white; padding: 0.6rem 1.5rem; border-radius: 40px; text-decoration: none; font-weight: 600; margin-bottom: 1rem; transition: 0.2s; }
+        .page-header p { color: #4b5565; margin-top: 0.5rem; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background: #0f2c3d; color: white; padding: 0.6rem 1.5rem; border-radius: 40px; text-decoration: none; font-weight: 600; margin-bottom: 1rem; transition: 0.2s; border: none; cursor: pointer; }
         .btn-back:hover { background: #c5a257; color: #0f2c3d; }
+        .search-help { margin-bottom: 2rem; }
+        .search-help input { width: 100%; padding: 1rem 1.2rem; border: 1px solid #e2e8f0; border-radius: 60px; font-family: 'Montserrat', sans-serif; font-size: 1rem; outline: none; transition: 0.2s; }
+        .search-help input:focus { border-color: #c5a257; box-shadow: 0 0 0 3px rgba(197, 162, 87, 0.1); }
+        .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .category-card { background: #fff; border-radius: 20px; border: 1px solid #eef2f8; padding: 1.5rem; text-align: center; transition: 0.25s; cursor: pointer; }
+        .category-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-color: #c5a25740; }
+        .category-card i { font-size: 2rem; color: #c5a257; margin-bottom: 1rem; }
+        .category-card h3 { font-weight: 800; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .category-card p { font-size: 0.8rem; color: #6c757d; }
+        .faq-section { margin: 2rem 0; }
+        .faq-title { font-weight: 800; font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #c5a257; padding-left: 1rem; }
+        .faq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; }
+        .faq-item { background: #fafcff; border-radius: 16px; border: 1px solid #eef2f8; padding: 1.2rem; transition: 0.2s; }
+        .faq-item:hover { background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .faq-question { font-weight: 700; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .faq-question i { color: #c5a257; font-size: 1rem; transition: 0.2s; }
+        .faq-question span { flex: 1; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; color: #4b5565; font-size: 0.85rem; margin-top: 0; padding-left: 1.5rem; }
+        .faq-item.open .faq-answer { max-height: 200px; margin-top: 0.8rem; }
+        .faq-item.open .faq-question i { transform: rotate(90deg); }
+        .contact-channels { background: #0f2c3d; border-radius: 24px; padding: 2rem; margin: 2rem 0; color: white; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center; }
+        .channel { transition: 0.2s; }
+        .channel i { font-size: 2rem; color: #c5a257; margin-bottom: 0.5rem; }
+        .channel h4 { font-weight: 700; margin-bottom: 0.3rem; }
+        .channel p { font-size: 0.8rem; opacity: 0.9; }
+        .channel a { color: #c5a257; text-decoration: none; font-weight: 600; }
+        .channel a:hover { text-decoration: underline; }
         .footer-premium { background: #0a121c; color: #a0a8b5; padding: 3rem 0 1.5rem; margin-top: 2rem; }
         .footer-main-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.2fr; gap: 2.5rem; margin-bottom: 2.5rem; }
         .footer-logo { font-size: 1.6rem; font-weight: 800; color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
@@ -48,5 +74,119 @@
         .footer-col h4:after { content: ''; position: absolute; bottom: -6px; left: 0; width: 35px; height: 2px; background: #c5a257; }
         .footer-col ul { list-style: none; }
         .footer-col li { margin-bottom: 0.7rem; }
-        .footer-col a { color: #a0a8b5; text-decoration: none; font-size: 0.8rem; transition: 0.2s; }
-       
+        .footer-col a { color: #a0a8b5; text-decoration: none; font-size: 0.8rem; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+        .footer-col a i { font-size: 0.7rem; color: #c5a257; }
+        .footer-col a:hover { color: #c5a257; transform: translateX(3px); }
+        .footer-bottom { border-top: 1px solid #1e2a36; padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.7rem; }
+        .footer-bottom-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+        .footer-bottom-links a { color: #a0a8b5; text-decoration: none; }
+        .footer-bottom-links a:hover { color: #c5a257; }
+        @media (max-width: 768px) { .footer-main-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; text-align: center; } .container-custom, .header-container, .footer-container { padding: 0 1.2rem; } .faq-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="top-banner"><div class="header-container"><i class="fas fa-headset"></i> Central de Atendimento 24h | <i class="fas fa-truck"></i> Frete Grátis</div></div>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-row">
+                <div class="logo-area"><a href="index.html" class="logo"><i class="fas fa-hourglass-half"></i> CHRONOS<span>WATCH</span></a></div>
+                <div class="search-wrapper"><div class="search-box"><input type="text" placeholder="Buscar produtos..."><button><i class="fas fa-search"></i></button></div></div>
+                <div class="header-icons"><a href="#" class="icon-item"><i class="far fa-heart"></i></a><a href="#" class="icon-item"><i class="fas fa-bag-shopping"></i></a><a href="#" class="icon-item"><i class="far fa-user"></i></a><button class="mobile-toggle" id="menuToggle"><i class="fas fa-bars"></i></button></div>
+            </div>
+            <div class="nav-row"><ul class="nav-menu" id="navMenu"><li><a href="index.html">INÍCIO</a></li><li><a href="#">MASCULINO</a></li><li><a href="#">FEMININO</a></li><li><a href="#">SMARTWATCH</a></li><li><a href="#">LUXO</a></li><li><a href="#">OUTLET</a></li></ul></div>
+        </div>
+    </header>
+    <div class="page-header"><div class="container-custom"><a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Voltar para loja</a><h1>Central de Ajuda</h1><p>Como podemos ajudar você? Tire suas dúvidas abaixo</p></div></div>
+    <div class="container-custom">
+        <div class="search-help"><input type="text" id="searchFaq" placeholder="🔍 Buscar na central de ajuda... (ex: troca, prazo, garantia)" onkeyup="filterFaq()"></div>
+        <div class="categories-grid">
+            <div class="category-card" onclick="filterByCategory('pedidos')"><i class="fas fa-box"></i><h3>Pedidos</h3><p>Acompanhamento e status</p></div>
+            <div class="category-card" onclick="filterByCategory('pagamentos')"><i class="fas fa-credit-card"></i><h3>Pagamentos</h3><p>Formas e parcelamento</p></div>
+            <div class="category-card" onclick="filterByCategory('entrega')"><i class="fas fa-truck"></i><h3>Entregas</h3><p>Prazos e rastreio</p></div>
+            <div class="category-card" onclick="filterByCategory('trocas')"><i class="fas fa-exchange-alt"></i><h3>Trocas</h3><p>Devoluções e reembolso</p></div>
+            <div class="category-card" onclick="filterByCategory('garantia')"><i class="fas fa-shield-alt"></i><h3>Garantia</h3><p>Assistência técnica</p></div>
+            <div class="category-card" onclick="filterByCategory('conta')"><i class="fas fa-user-circle"></i><h3>Minha Conta</h3><p>Cadastro e login</p></div>
+        </div>
+        <div class="faq-section">
+            <div class="faq-title">Perguntas frequentes</div>
+            <div class="faq-grid" id="faqGrid">
+                <div class="faq-item" data-category="pedidos"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Como acompanhar meu pedido?</span></div><div class="faq-answer">Após a confirmação do pagamento, você receberá um e-mail com o código de rastreio. Acesse o site dos Correios ou transportadora para acompanhar em tempo real.</div></div>
+                <div class="faq-item" data-category="pedidos"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Qual o prazo para cancelamento?</span></div><div class="faq-answer">Você pode cancelar o pedido em até 7 dias após a compra (Código de Defesa do Consumidor). Após o envio, aguarde receber e solicite devolução.</div></div>
+                <div class="faq-item" data-category="pagamentos"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Quais formas de pagamento aceitam?</span></div><div class="faq-answer">Aceitamos cartões de crédito (Visa, Mastercard, Amex, Elo), PIX, boleto bancário e parcelamento em até 6x sem juros no cartão.</div></div>
+                <div class="faq-item" data-category="pagamentos"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>O PIX é seguro?</span></div><div class="faq-answer">Sim. Utilizamos gateways de pagamento certificados (PCI-DSS). O PIX é processado em ambiente seguro e confirmado em segundos.</div></div>
+                <div class="faq-item" data-category="entrega"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Qual o prazo de entrega?</span></div><div class="faq-answer">O prazo varia de acordo com sua região: Sul/Sudeste: 3-7 dias úteis; Norte/Nordeste/Centro-Oeste: 5-12 dias úteis. Consulte o frete no carrinho.</div></div>
+                <div class="faq-item" data-category="entrega"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Frete grátis para todo Brasil?</span></div><div class="faq-answer">Oferecemos frete grátis para Sul e Sudeste em compras acima de R$ 500. Para outras regiões, consulte condições promocionais.</div></div>
+                <div class="faq-item" data-category="trocas"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Como solicitar troca?</span></div><div class="faq-answer">Entre em contato pelo e-mail trocas@chronoswatch.com.br dentro de 30 dias após o recebimento. O produto deve estar na embalagem original, sem sinais de uso.</div></div>
+                <div class="faq-item" data-category="trocas"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Recebi um produto com defeito. E agora?</span></div><div class="faq-answer">Solicite a troca imediatamente. Após análise, enviaremos um novo produto sem custos adicionais, ou reembolsaremos o valor.</div></div>
+                <div class="faq-item" data-category="garantia"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Qual a garantia dos produtos?</span></div><div class="faq-answer">Todos os relógios possuem garantia oficial de 2 anos contra defeitos de fabricação. Baterias e pulseiras possuem 6 meses de garantia.</div></div>
+                <div class="faq-item" data-category="garantia"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Como acionar a garantia?</span></div><div class="faq-answer">Leve o produto a uma de nossas lojas físicas ou envie para nossa central de assistência técnica. Guarde a nota fiscal e o certificado de garantia.</div></div>
+                <div class="faq-item" data-category="conta"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Esqueci minha senha. Como recuperar?</span></div><div class="faq-answer">Clique em "Esqueci minha senha" na página de login. Enviaremos um link para redefinição no seu e-mail cadastrado.</div></div>
+                <div class="faq-item" data-category="conta"><div class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-chevron-right"></i><span>Como cadastrar endereço de entrega diferente?</span></div><div class="faq-answer">No seu perfil, acesse "Meus Endereços" e adicione um novo. Na finalização da compra, você pode escolher qual deseja usar.</div></div>
+            </div>
+        </div>
+        <div class="contact-channels">
+            <div class="channel"><i class="fab fa-whatsapp"></i><h4>WhatsApp</h4><p>Atendimento 24h</p><a href="https://wa.me/5511999998888" target="_blank">(11) 99999-8888</a></div>
+            <div class="channel"><i class="far fa-envelope"></i><h4>E-mail</h4><p>Resposta em até 24h</p><a href="mailto:contato@chronoswatch.com">contato@chronoswatch.com</a></div>
+            <div class="channel"><i class="fas fa-phone-alt"></i><h4>Telefone</h4><p>Seg-Sex: 9h-18h</p><p>(11) 3123-4567</p></div>
+            <div class="channel"><i class="fas fa-comment-dots"></i><h4>Chat Online</h4><p>Seg-Sex: 9h-18h</p><p>Disponível no site</p></div>
+        </div>
+    </div>
+    <footer class="footer-premium">
+        <div class="footer-container">
+            <div class="footer-main-grid">
+                <div class="footer-col"><a href="index.html" class="footer-logo"><i class="fas fa-hourglass-half"></i> CHRONOS<span>WATCH</span></a><p style="margin-top:1rem;">© 2025 - Todos os direitos reservados.</p></div>
+                <div class="footer-col"><h4>Institucional</h4><ul><li><a href="sobre.html"><i class="fas fa-chevron-right"></i> Sobre</a></li><li><a href="lojas.html"><i class="fas fa-chevron-right"></i> Nossas Lojas</a></li><li><a href="trabalhe-conosco.html"><i class="fas fa-chevron-right"></i> Trabalhe Conosco</a></li><li><a href="blog.html"><i class="fas fa-chevron-right"></i> Blog</a></li><li><a href="investidores.html"><i class="fas fa-chevron-right"></i> Investidores</a></li></ul></div>
+                <div class="footer-col"><h4>Atendimento</h4><ul><li><a href="ajuda.html"><i class="fas fa-chevron-right"></i> Central de Ajuda</a></li><li><a href="trocas.html"><i class="fas fa-chevron-right"></i> Trocas e Devoluções</a></li><li><a href="garantia.html"><i class="fas fa-chevron-right"></i> Garantia Estendida</a></li><li><a href="privacidade.html"><i class="fas fa-chevron-right"></i> Política de Privacidade</a></li><li><a href="termos.html"><i class="fas fa-chevron-right"></i> Termos de Uso</a></li></ul></div>
+                <div class="footer-col"><h4>Segurança</h4><ul><li><a href="seguranca.html"><i class="fas fa-chevron-right"></i> Segurança</a></li><li><a href="etica.html"><i class="fas fa-chevron-right"></i> Canal de Ética</a></li><li><a href="mapa-site.html"><i class="fas fa-chevron-right"></i> Mapa do Site</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><div>Chronos Watch - CNPJ: 12.345.678/0001-99</div><div class="footer-bottom-links"><a href="privacidade.html">Privacidade</a><a href="termos.html">Termos</a><a href="seguranca.html">Segurança</a><a href="etica.html">Canal de Ética</a></div></div>
+        </div>
+    </footer>
+    <script>
+        function toggleFaq(element) {
+            const faqItem = element.closest('.faq-item');
+            if(faqItem.classList.contains('open')) {
+                faqItem.classList.remove('open');
+            } else {
+                faqItem.classList.add('open');
+            }
+        }
+        function filterFaq() {
+            const searchTerm = document.getElementById('searchFaq').value.toLowerCase();
+            const items = document.querySelectorAll('.faq-item');
+            items.forEach(item => {
+                const question = item.querySelector('.faq-question span').innerText.toLowerCase();
+                const answer = item.querySelector('.faq-answer').innerText.toLowerCase();
+                if(question.includes(searchTerm) || answer.includes(searchTerm) || searchTerm === '') {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        function filterByCategory(category) {
+            const items = document.querySelectorAll('.faq-item');
+            items.forEach(item => {
+                if(item.dataset.category === category) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            document.getElementById('searchFaq').value = '';
+            const categoryNames = { pedidos: 'Pedidos', pagamentos: 'Pagamentos', entrega: 'Entregas', trocas: 'Trocas', garantia: 'Garantia', conta: 'Minha Conta' };
+            document.getElementById('searchFaq').placeholder = `Mostrando apenas: ${categoryNames[category]} - digite para filtrar`;
+        }
+        function resetFilter() {
+            const items = document.querySelectorAll('.faq-item');
+            items.forEach(item => { item.style.display = ''; });
+            document.getElementById('searchFaq').value = '';
+            document.getElementById('searchFaq').placeholder = '🔍 Buscar na central de ajuda... (ex: troca, prazo, garantia)';
+        }
+        document.getElementById('searchFaq').addEventListener('input', function(e) {
+            if(e.target.value === '') resetFilter();
+        });
+        document.getElementById('menuToggle').onclick = () => document.getElementById('navMenu').classList.toggle('show');
+    </script>
+</body>
+</html>
