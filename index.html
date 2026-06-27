@@ -503,11 +503,10 @@
             <div class="search-wrapper">
                 <div class="search-box">
                     <input type="text" id="searchInput" placeholder="Buscar por modelo...">
-                    <button><i class="fas fa-search"></i></button>
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
                 </div>
             </div>
             <div class="header-icons">
-                <!-- Ícone de coração removido -->
                 <div class="icon-item" id="cartIcon">
                     <i class="fas fa-bag-shopping"></i>
                     <span class="badge-count" id="cartCount">0</span>
@@ -545,11 +544,14 @@
             </div>
         </div>
 
-        <div class="section-title">
-            <h2 id="categoryTitle">Todos os produtos</h2>
-            <p>Adicione ao carrinho e finalize pelo WhatsApp</p>
+        <!-- Seção de produtos com ID para rolagem -->
+        <div id="productSection">
+            <div class="section-title">
+                <h2 id="categoryTitle">Todos os produtos</h2>
+                <p>Adicione ao carrinho e finalize pelo WhatsApp</p>
+            </div>
+            <div class="products-grid" id="productsGrid"></div>
         </div>
-        <div class="products-grid" id="productsGrid"></div>
 
         <div class="newsletter-card">
             <h3>Receba ofertas exclusivas</h3>
@@ -569,7 +571,8 @@
                 <a href="#" class="footer-logo">Relógios Clássicos</a>
                 <p>Especialistas em alta relojoaria desde 2008. Oferecemos as melhores marcas com garantia de autenticidade e suporte especializado.</p>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <!-- Instagram com link correto -->
+                    <a href="https://www.instagram.com/relogios.classicos" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -672,9 +675,11 @@
     const closeCartBtn = document.getElementById('closeCartBtn');
     const checkoutBtn = document.getElementById('checkoutWhatsAppBtn');
     const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
     const clearCartBtn = document.getElementById('clearCartBtn');
     const categoryTitle = document.getElementById('categoryTitle');
     const navLinks = document.querySelectorAll('.nav-menu a');
+    const productSection = document.getElementById('productSection');
 
     function saveCart() { localStorage.setItem('chronos_cart', JSON.stringify(cart)); updateCartUI(); }
     function loadCart() { 
@@ -723,10 +728,16 @@
     function openCartSidebar() { cartSidebar.classList.add('open'); cartOverlay.classList.add('active'); }
     function closeCartSidebar() { cartSidebar.classList.remove('open'); cartOverlay.classList.remove('active'); }
 
+    // Função para rolar suavemente até a seção de produtos
+    function scrollToProductSection() {
+        if (productSection) {
+            productSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
     function generateOrderMessage() {
         if(cart.length === 0) return "Olá! Gostaria de fazer um pedido, mas meu carrinho está vazio.";
         let productList = cart.map((item, idx) => `${idx+1} • ${item.brand} ${item.name}`).join('\n');
-        // Mensagem sem emojis
         return encodeURIComponent(
             `PEDIDO RELÓGIOS CLÁSSICOS\n\n` +
             `PRODUTOS SELECIONADOS:\n${productList}\n\n` +
@@ -736,7 +747,8 @@
     }
     function sendToWhatsApp() { 
         if(cart.length === 0) { alert("Carrinho vazio!"); return; } 
-        window.open(`https://wa.me/5511999998888?text=${generateOrderMessage()}`, '_blank'); 
+        // Número atualizado: Moçambique +258 845583974
+        window.open(`https://wa.me/258845583974?text=${generateOrderMessage()}`, '_blank'); 
     }
 
     function renderProducts() {
@@ -786,10 +798,31 @@
         categoryTitle.textContent = genderMap[currentGender] || 'Produtos';
     }
 
-    // Eventos
-    searchInput.addEventListener('input', (e) => {
-        searchTerm = e.target.value;
+    // Função que aplica filtro, renderiza e rola para a seção
+    function applyFilterAndScroll(gender) {
+        currentGender = gender;
         renderProducts();
+        scrollToProductSection();
+    }
+
+    // Função que aplica busca, renderiza e rola
+    function applySearchAndScroll() {
+        searchTerm = searchInput.value.trim();
+        renderProducts();
+        scrollToProductSection();
+    }
+
+    // Eventos
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            applySearchAndScroll();
+        }
+    });
+
+    searchButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        applySearchAndScroll();
     });
 
     navLinks.forEach(link => {
@@ -798,8 +831,7 @@
             const gender = link.getAttribute('data-gender');
             navLinks.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
-            currentGender = gender;
-            renderProducts();
+            applyFilterAndScroll(gender);
             if (window.innerWidth <= 992) {
                 document.getElementById('navMenu').classList.remove('show');
             }
