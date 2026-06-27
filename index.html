@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>TimePieces 258</title>
-    <!-- Fonte Montserrat (bold e família) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Relógios Clássicos</title>
     <style>
         * {
             margin: 0;
@@ -18,22 +14,21 @@
         body {
             background-color: #ffffff;
             color: #1a1a1e;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Book Antiqua', 'Palatino', 'Georgia', serif;
             font-weight: 400;
             line-height: 1.5;
             scroll-behavior: smooth;
         }
 
         h1, h2, h3, .logo, .product-title, .price, .btn-primary, .btn-outline {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
+            font-family: 'Book Antiqua', 'Palatino', 'Georgia', serif;
+            font-weight: 700;
             letter-spacing: -0.3px;
         }
 
-        /* ========= HEADER ========= */
         .top-banner {
-            background-color: #0a2a3b;
-            color: #f0ede8;
+            background-color: #000000;
+            color: #d4af37;
             font-size: 0.75rem;
             padding: 0.5rem 0;
             text-align: center;
@@ -61,15 +56,14 @@
         }
         .logo {
             font-size: 1.8rem;
-            font-weight: 800;
+            font-weight: 700;
             text-decoration: none;
-            color: #0f2c3d;
+            color: #d4af37;
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .logo i { color: #c5a257; font-size: 1.6rem; }
-        .logo span { font-weight: 700; color: #c5a257; }
+        .logo i { display: none; }
         .search-wrapper { flex: 1; max-width: 480px; margin: 0 1rem; }
         .search-box {
             display: flex;
@@ -82,7 +76,7 @@
             background: transparent;
             border: none;
             padding: 0.8rem 1.2rem;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Book Antiqua', 'Palatino', 'Georgia', serif;
             outline: none;
         }
         .search-box button {
@@ -101,15 +95,15 @@
             transition: color 0.2s;
             cursor: pointer;
         }
-        .icon-item:hover { color: #c5a257; }
+        .icon-item:hover { color: #d4af37; }
         .badge-count {
             position: absolute;
             top: -8px;
             right: -12px;
-            background: #c5a257;
-            color: #0f2c3d;
+            background: #d4af37;
+            color: #000000;
             font-size: 0.65rem;
-            font-weight: 800;
+            font-weight: 700;
             border-radius: 30px;
             width: 18px;
             height: 18px;
@@ -133,8 +127,13 @@
             text-transform: uppercase;
             color: #2c3e44;
             transition: color 0.2s;
+            cursor: pointer;
         }
-        .nav-menu li a:hover { color: #c5a257; }
+        .nav-menu li a:hover { color: #d4af37; }
+        .nav-menu li a.active {
+            color: #d4af37;
+            border-bottom: 2px solid #d4af37;
+        }
         .mobile-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
 
         @media (max-width: 992px) {
@@ -145,7 +144,6 @@
             .mobile-toggle { display: block; }
         }
 
-        /* CONTEÚDO */
         .container-custom {
             max-width: 1280px;
             margin: 0 auto;
@@ -158,11 +156,11 @@
             align-items: center;
             padding: 3rem 0 2rem;
         }
-        .hero-content h1 { font-size: 3.2rem; font-weight: 800; color: #142830; }
+        .hero-content h1 { font-size: 3.2rem; font-weight: 700; color: #000000; }
         .hero-content p { margin: 1.5rem 0; color: #4b5565; }
         .btn-primary {
-            background: #0f2c3d;
-            color: white;
+            background: #000000;
+            color: #d4af37;
             padding: 0.85rem 2rem;
             border-radius: 40px;
             text-decoration: none;
@@ -174,7 +172,7 @@
             border: none;
             cursor: pointer;
         }
-        .btn-primary:hover { background: #c5a257; color: #0f2c3d; }
+        .btn-primary:hover { background: #d4af37; color: #000000; }
         .btn-outline {
             border: 1px solid #d1d9e8;
             padding: 0.85rem 2rem;
@@ -190,7 +188,7 @@
         .hero-img img { width: 100%; border-radius: 28px; object-fit: cover; }
 
         .section-title { text-align: center; margin: 3rem 0 2rem; }
-        .section-title h2 { font-size: 2rem; font-weight: 800; }
+        .section-title h2 { font-size: 2rem; font-weight: 700; }
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -207,9 +205,9 @@
         .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08); }
         .product-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; padding: 1.2rem; background: #fafcff; }
         .product-info { padding: 0 1.2rem 1.5rem; }
-        .product-brand { font-size: 0.7rem; text-transform: uppercase; color: #c5a257; font-weight: 700; }
-        .product-title { font-weight: 800; font-size: 1rem; margin: 0.4rem 0; }
-        .price { font-weight: 800; font-size: 1.2rem; color: #1f2e3a; margin: 0.5rem 0; }
+        .product-brand { font-size: 0.7rem; text-transform: uppercase; color: #d4af37; font-weight: 700; }
+        .product-title { font-weight: 700; font-size: 1rem; margin: 0.4rem 0; }
+        .price { font-weight: 700; font-size: 1.2rem; color: #1f2e3a; margin: 0.5rem 0; }
         .btn-card {
             background: transparent;
             border: 1px solid #e2e8f0;
@@ -219,11 +217,10 @@
             font-size: 0.75rem;
             cursor: pointer;
             transition: 0.2s;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Book Antiqua', 'Palatino', 'Georgia', serif;
         }
-        .btn-card:hover { background: #0f2c3d; border-color: #0f2c3d; color: white; }
+        .btn-card:hover { background: #000000; border-color: #000000; color: #d4af37; }
 
-        /* CARRINHO SIDEBAR */
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -262,59 +259,74 @@
             justify-content: space-between;
             align-items: center;
         }
-        .cart-header h3 { font-weight: 800; font-size: 1.4rem; }
+        .cart-header h3 { font-weight: 700; font-size: 1.4rem; }
         .close-cart { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6c757d; }
         .cart-items { flex: 1; overflow-y: auto; padding: 1rem; }
         .cart-item { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid #f0f2f5; align-items: center; }
         .cart-item-img { width: 70px; height: 70px; object-fit: cover; border-radius: 12px; }
         .cart-item-info { flex: 1; }
         .cart-item-name { font-weight: 700; font-size: 0.9rem; }
-        .cart-item-brand { font-size: 0.7rem; color: #c5a257; font-weight: 600; }
+        .cart-item-brand { font-size: 0.7rem; color: #d4af37; font-weight: 600; }
         .cart-item-price { font-size: 0.85rem; font-weight: 700; color: #1f2e3a; margin-top: 4px; }
         .cart-item-remove { background: none; border: none; color: #dc3545; cursor: pointer; font-size: 1rem; padding: 0.5rem; }
         .cart-footer { padding: 1.5rem; border-top: 1px solid #eef2f8; }
-        .cart-total { display: flex; justify-content: space-between; font-weight: 800; font-size: 1.1rem; margin-bottom: 1rem; }
+        .cart-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; }
         .btn-checkout {
-            background: #0f2c3d;
-            color: white;
+            background: #000000;
+            color: #d4af37;
             border: none;
             width: 100%;
             padding: 1rem;
             border-radius: 40px;
-            font-weight: 800;
+            font-weight: 700;
             font-size: 1rem;
             cursor: pointer;
             transition: 0.2s;
         }
-        .btn-checkout:hover { background: #c5a257; color: #0f2c3d; }
+        .btn-checkout:hover { background: #d4af37; color: #000000; }
         .empty-cart { text-align: center; padding: 2rem; color: #6c757d; }
+        .clear-cart-btn {
+            background: transparent;
+            border: 1px solid #dc3545;
+            color: #dc3545;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: block;
+            margin: 0.5rem auto 0;
+            transition: 0.2s;
+            font-family: 'Book Antiqua', 'Palatino', 'Georgia', serif;
+            width: 100%;
+        }
+        .clear-cart-btn:hover { background: #dc3545; color: #fff; }
 
-        /* NEWSLETTER */
         .newsletter-card {
-            background: #0f2c3d;
+            background: #000000;
             border-radius: 24px;
             padding: 2.5rem;
             text-align: center;
-            color: white;
+            color: #d4af37;
             margin: 3rem 0;
         }
-        .newsletter-card h3 { font-weight: 800; font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .newsletter-card h3 { font-weight: 700; font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .newsletter-card p { color: #ffffff; }
         .news-form { display: flex; gap: 12px; max-width: 500px; margin: 1.5rem auto 0; flex-wrap: wrap; justify-content: center; }
-        .news-input { flex: 1; padding: 0.9rem 1.2rem; border-radius: 60px; border: none; outline: none; font-family: 'Montserrat', sans-serif; min-width: 200px; }
+        .news-input { flex: 1; padding: 0.9rem 1.2rem; border-radius: 60px; border: none; outline: none; font-family: 'Book Antiqua', 'Palatino', 'Georgia', serif; min-width: 200px; }
 
-        /* ========= FOOTER PREMIUM E RESPONSIVO ========= */
         .footer-premium {
-            background: #0a121c;
+            background: #0a0a0a;
             color: #a0a8b5;
             padding: 3rem 0 1.5rem;
             margin-top: 2rem;
+            border-top: 2px solid #d4af37;
         }
         .footer-container {
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 2rem;
         }
-        /* Grid principal do footer */
         .footer-main-grid {
             display: grid;
             grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
@@ -328,14 +340,14 @@
         }
         .footer-logo {
             font-size: 1.6rem;
-            font-weight: 800;
-            color: #ffffff;
+            font-weight: 700;
+            color: #d4af37;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 8px;
         }
-        .footer-logo i { color: #c5a257; }
+        .footer-logo i { display: none; }
         .social-links {
             display: flex;
             gap: 1rem;
@@ -349,13 +361,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #c5a257;
+            color: #d4af37;
             transition: 0.3s;
             text-decoration: none;
         }
         .social-links a:hover {
-            background: #c5a257;
-            color: #0a121c;
+            background: #d4af37;
+            color: #0a0a0a;
             transform: translateY(-3px);
         }
         .footer-col h4 {
@@ -374,7 +386,7 @@
             left: 0;
             width: 35px;
             height: 2px;
-            background: #c5a257;
+            background: #d4af37;
         }
         .footer-col ul {
             list-style: none;
@@ -394,10 +406,10 @@
         }
         .footer-col a i {
             font-size: 0.7rem;
-            color: #c5a257;
+            color: #d4af37;
         }
         .footer-col a:hover {
-            color: #c5a257;
+            color: #d4af37;
             transform: translateX(3px);
         }
         .contact-info li {
@@ -409,10 +421,9 @@
         }
         .contact-info i {
             width: 28px;
-            color: #c5a257;
+            color: #d4af37;
             font-size: 1rem;
         }
-        /* badges de pagamento */
         .payment-badges {
             display: flex;
             flex-wrap: wrap;
@@ -425,9 +436,8 @@
             border-radius: 40px;
             font-size: 0.7rem;
             font-weight: 600;
-            color: #c5a257;
+            color: #d4af37;
         }
-        /* footer bottom */
         .footer-bottom {
             border-top: 1px solid #1e2a36;
             padding-top: 1.5rem;
@@ -447,30 +457,18 @@
             color: #a0a8b5;
             text-decoration: none;
         }
-        .footer-bottom-links a:hover { color: #c5a257; }
+        .footer-bottom-links a:hover { color: #d4af37; }
 
-        /* Responsividade do footer e geral */
         @media (max-width: 1024px) {
-            .footer-main-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
+            .footer-main-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
         }
         @media (max-width: 768px) {
             .hero { grid-template-columns: 1fr; text-align: center; }
             .hero-content p { max-width: 100%; }
             .hero-buttons { justify-content: center; }
-            .footer-main-grid {
-                grid-template-columns: 1fr;
-                gap: 1.8rem;
-            }
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer-bottom-links {
-                justify-content: center;
-            }
+            .footer-main-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .footer-bottom-links { justify-content: center; }
             .news-form { flex-direction: column; align-items: center; }
             .news-input { width: 100%; }
             .container-custom { padding: 0 1.2rem; }
@@ -486,6 +484,7 @@
             .hero-content h1 { font-size: 2.2rem; }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -499,16 +498,16 @@
     <div class="header-container">
         <div class="header-row">
             <div class="logo-area">
-                <a href="#" class="logo"><i class="fas fa-hourglass-half"></i> TIMEPIECES<span>258</span></a>
+                <a href="#" class="logo">Relógios Clássicos</a>
             </div>
             <div class="search-wrapper">
                 <div class="search-box">
-                    <input type="text" placeholder="Buscar por modelo...">
+                    <input type="text" id="searchInput" placeholder="Buscar por modelo...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
             </div>
             <div class="header-icons">
-                <a href="#" class="icon-item"><i class="far fa-heart"></i></a>
+                <!-- Ícone de coração removido -->
                 <div class="icon-item" id="cartIcon">
                     <i class="fas fa-bag-shopping"></i>
                     <span class="badge-count" id="cartCount">0</span>
@@ -519,8 +518,12 @@
         </div>
         <div class="nav-row">
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#">LANÇAMENTOS</a></li><li><a href="#">MASCULINO</a></li><li><a href="#">FEMININO</a></li>
-                <li><a href="#">SMARTWATCH</a></li><li><a href="#">LUXO</a></li><li><a href="#">OUTLET</a></li>
+                <li><a href="#" data-gender="all" class="active">LANÇAMENTOS</a></li>
+                <li><a href="#" data-gender="masculino">MASCULINO</a></li>
+                <li><a href="#" data-gender="feminino">FEMININO</a></li>
+                <li><a href="#" data-gender="smartwatch">SMARTWATCH</a></li>
+                <li><a href="#" data-gender="luxo">LUXO</a></li>
+                <li><a href="#" data-gender="outlet">OUTLET</a></li>
             </ul>
         </div>
     </div>
@@ -530,8 +533,7 @@
     <div class="container-custom">
         <div class="hero">
             <div class="hero-content">
-                <span class="badge" style="background:#eaf4e8; color:#0f2c3d; padding:0.3rem 0.8rem; border-radius:40px; font-weight:700;">Nova coleção outono</span>
-                <h1 style="margin-top: 0.8rem;">Elegância que mede o tempo</h1>
+                <h1>Elegância que mede o tempo</h1>
                 <p>Descubra uma curadoria exclusiva de relógios automáticos, cronógrafos e smartwatches.</p>
                 <div class="hero-buttons">
                     <a href="#" class="btn-primary">COMPRAR AGORA <i class="fas fa-arrow-right"></i></a>
@@ -544,7 +546,7 @@
         </div>
 
         <div class="section-title">
-            <h2>Mais vendidos</h2>
+            <h2 id="categoryTitle">Todos os produtos</h2>
             <p>Adicione ao carrinho e finalize pelo WhatsApp</p>
         </div>
         <div class="products-grid" id="productsGrid"></div>
@@ -554,18 +556,17 @@
             <p>Inscreva-se e ganhe 10% de desconto na primeira compra</p>
             <div class="news-form">
                 <input type="email" class="news-input" placeholder="Seu melhor e-mail">
-                <button class="btn-primary" style="background:#c5a257; color:#0f2c3d; border:none;">ASSINAR</button>
+                <button class="btn-primary" style="background:#d4af37; color:#000000; border:none;">ASSINAR</button>
             </div>
         </div>
     </div>
 </main>
 
-<!-- FOOTER PREMIUM MELHORADO -->
 <footer class="footer-premium">
     <div class="footer-container">
         <div class="footer-main-grid">
             <div class="footer-about">
-                <a href="#" class="footer-logo"><i class="fas fa-hourglass-half"></i> TIMEPIECES<span style="color:#c5a257;">258</span></a>
+                <a href="#" class="footer-logo">Relógios Clássicos</a>
                 <p>Especialistas em alta relojoaria desde 2008. Oferecemos as melhores marcas com garantia de autenticidade e suporte especializado.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -578,7 +579,7 @@
             <div class="footer-col">
                 <h4>Institucional</h4>
                 <ul>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Sobre a Chronos</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Sobre a Relógios Clássicos</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Nossas Lojas</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Trabalhe Conosco</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Blog e Novidades</a></li>
@@ -588,31 +589,31 @@
             <div class="footer-col">
                 <h4>Atendimento</h4>
                 <ul>
-                    <li><a href="centralajuda.html"><i class="fas fa-chevron-right"></i> Central de Ajuda</a></li>
-                    <li><a href="trocasdevolucoes.html"><i class="fas fa-chevron-right"></i> Trocas e Devoluções</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Central de Ajuda</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Trocas e Devoluções</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> Garantia Estendida</a></li>
-                    <li><a href="politicaprivacidade.html"><i class="fas fa-chevron-right"></i> Política de Privacidade</a></li>
-                    <li><a href="termosuso.html"><i class="fas fa-chevron-right"></i> Termos de Uso</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Política de Privacidade</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Termos de Uso</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Contato & Pagamento</h4>
                 <ul class="contact-info">
                     <li><i class="fab fa-whatsapp"></i> (11) 98765-4321</li>
-                    <li><i class="far fa-envelope"></i> contato@chronoswatch.com</li>
+                    <li><i class="far fa-envelope"></i> contato@relogiosclassicos.com</li>
                     <li><i class="far fa-clock"></i> Seg-Sex: 9h às 18h</li>
                 </ul>
                 <div class="payment-badges">
                     <span><i class="fab fa-cc-visa"></i> Visa</span>
                     <span><i class="fab fa-cc-mastercard"></i> Mastercard</span>
-                    <span><i class="fab fa-pix"></i> PIX</span>
+                    <span><i class="fas fa-wallet"></i> MPesa</span>
                     <span><i class="fas fa-barcode"></i> Boleto</span>
                     <span><i class="fab fa-amex"></i> Amex</span>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <div>© 2025 Chronos Watch - Todos os direitos reservados. | CNPJ: 12.345.678/0001-99</div>
+            <div>© 2025 Relógios Clássicos - Todos os direitos reservados. | CNPJ: 12.345.678/0001-99</div>
             <div class="footer-bottom-links">
                 <a href="#">Mapa do Site</a>
                 <a href="#">Privacidade</a>
@@ -630,22 +631,37 @@
         <h3><i class="fas fa-shopping-bag"></i> Seu Carrinho</h3>
         <button class="close-cart" id="closeCartBtn">&times;</button>
     </div>
-    <div class="cart-items" id="cartItemsList"><div class="empty-cart">Seu carrinho está vazio.</div></div>
+    <div class="cart-items" id="cartItemsList">
+        <div class="empty-cart">Seu carrinho está vazio.</div>
+    </div>
     <div class="cart-footer">
-        <div class="cart-total" id="cartTotal"><span>Total:</span><span>R$ 0,00</span></div>
+        <div class="cart-total" id="cartTotal"><span>Total:</span><span>MT 0,00</span></div>
         <button class="btn-checkout" id="checkoutWhatsAppBtn">FINALIZAR PEDIDO <i class="fab fa-whatsapp"></i></button>
+        <button class="clear-cart-btn" id="clearCartBtn"><i class="fas fa-trash-alt"></i> Esvaziar carrinho</button>
     </div>
 </div>
 
 <script>
+    // Lista de produtos com categorias (gender)
     const products = [
-        { id: 1, name: "Presage Cocktail Time", brand: "SEIKO", price: 2890, img: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 2, name: "Gentleman Powermatic", brand: "TISSOT", price: 4290, img: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 3, name: "Speedmaster Moonwatch", brand: "OMEGA", price: 32900, img: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-        { id: 4, name: "G-Shock GA-2100", brand: "CASIO", price: 849, img: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+        { id: 1, name: "Presage Cocktail Time", brand: "SEIKO", price: 2890, img: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "masculino" },
+        { id: 2, name: "Gentleman Powermatic", brand: "TISSOT", price: 4290, img: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "masculino" },
+        { id: 3, name: "Speedmaster Moonwatch", brand: "OMEGA", price: 32900, img: "https://images.unsplash.com/photo-1547996160-81dfa63595aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "luxo" },
+        { id: 4, name: "G-Shock GA-2100", brand: "CASIO", price: 849, img: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "outlet" },
+        { id: 5, name: "Navitimer B01", brand: "BREITLING", price: 27900, img: "https://images.unsplash.com/photo-1585123334904-845d60e6b6d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "masculino" },
+        { id: 6, name: "Reverso Classic", brand: "JAEGER-LECOULTRE", price: 48900, img: "https://images.unsplash.com/photo-1508057198894-247b23fe5ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "feminino" },
+        { id: 7, name: "Apple Watch Series 9", brand: "APPLE", price: 12990, img: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "smartwatch" },
+        { id: 8, name: "Galaxy Watch 6 Classic", brand: "SAMSUNG", price: 8990, img: "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "smartwatch" },
+        { id: 9, name: "Datejust 41", brand: "ROLEX", price: 68900, img: "https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "luxo" },
+        { id: 10, name: "Eco-Drive Promaster", brand: "CITIZEN", price: 3290, img: "https://images.unsplash.com/photo-1533139502658-0198f920d8e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "masculino" },
+        { id: 11, name: "Jet Set Chronograph", brand: "MICHAEL KORS", price: 3990, img: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "feminino" },
+        { id: 12, name: "Grant Chronograph", brand: "FOSSIL", price: 2490, img: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "outlet" }
     ];
 
     let cart = [];
+    let currentGender = 'all';
+    let searchTerm = '';
+
     const productsGrid = document.getElementById('productsGrid');
     const cartCountSpan = document.getElementById('cartCount');
     const cartItemsDiv = document.getElementById('cartItemsList');
@@ -655,16 +671,24 @@
     const cartIcon = document.getElementById('cartIcon');
     const closeCartBtn = document.getElementById('closeCartBtn');
     const checkoutBtn = document.getElementById('checkoutWhatsAppBtn');
+    const searchInput = document.getElementById('searchInput');
+    const clearCartBtn = document.getElementById('clearCartBtn');
+    const categoryTitle = document.getElementById('categoryTitle');
+    const navLinks = document.querySelectorAll('.nav-menu a');
 
     function saveCart() { localStorage.setItem('chronos_cart', JSON.stringify(cart)); updateCartUI(); }
-    function loadCart() { const saved = localStorage.getItem('chronos_cart'); cart = saved ? JSON.parse(saved) : []; updateCartUI(); }
+    function loadCart() { 
+        const saved = localStorage.getItem('chronos_cart'); 
+        cart = saved ? JSON.parse(saved) : []; 
+        updateCartUI(); 
+    }
     function calculateTotal() { return cart.reduce((sum, item) => sum + item.price, 0); }
 
     function updateCartUI() {
         cartCountSpan.innerText = cart.length;
         if(cart.length === 0) {
             cartItemsDiv.innerHTML = '<div class="empty-cart">Seu carrinho está vazio.</div>';
-            if(cartTotalSpan) cartTotalSpan.innerHTML = `<span>Total:</span><span>R$ 0,00</span>`;
+            cartTotalSpan.innerHTML = `<span>Total:</span><span>MT 0,00</span>`;
             return;
         }
         let html = '';
@@ -675,7 +699,7 @@
                     <div class="cart-item-info">
                         <div class="cart-item-name">${item.name}</div>
                         <div class="cart-item-brand">${item.brand}</div>
-                        <div class="cart-item-price">R$ ${item.price.toLocaleString('pt-BR')}</div>
+                        <div class="cart-item-price">MT ${item.price.toLocaleString('pt-BR')}</div>
                     </div>
                     <button class="cart-item-remove" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
                 </div>
@@ -683,39 +707,119 @@
         });
         cartItemsDiv.innerHTML = html;
         const total = calculateTotal();
-        cartTotalSpan.innerHTML = `<span>Total:</span><span>R$ ${total.toLocaleString('pt-BR')}</span>`;
+        cartTotalSpan.innerHTML = `<span>Total:</span><span>MT ${total.toLocaleString('pt-BR')}</span>`;
         document.querySelectorAll('.cart-item-remove').forEach(btn => {
             btn.addEventListener('click', (e) => { removeFromCart(parseInt(btn.getAttribute('data-id'))); });
         });
     }
+
     function addToCart(product) { cart.push({ ...product }); saveCart(); openCartSidebar(); }
-    function removeFromCart(productId) { const index = cart.findIndex(item => item.id === productId); if(index !== -1) { cart.splice(index, 1); saveCart(); } }
+    function removeFromCart(productId) { 
+        const index = cart.findIndex(item => item.id === productId); 
+        if(index !== -1) { cart.splice(index, 1); saveCart(); } 
+    }
+    function clearCart() { cart = []; saveCart(); updateCartUI(); }
+
     function openCartSidebar() { cartSidebar.classList.add('open'); cartOverlay.classList.add('active'); }
     function closeCartSidebar() { cartSidebar.classList.remove('open'); cartOverlay.classList.remove('active'); }
+
     function generateOrderMessage() {
         if(cart.length === 0) return "Olá! Gostaria de fazer um pedido, mas meu carrinho está vazio.";
         let productList = cart.map((item, idx) => `${idx+1} • ${item.brand} ${item.name}`).join('\n');
-        return encodeURIComponent(`🕐 *PEDIDO CHRONOS WATCH* 🕐\n\n*PRODUTOS SELECIONADOS:*\n${productList}\n\n*Total de itens:* ${cart.length}\n\nGostaria de finalizar esta compra. Podemos prosseguir?`);
+        // Mensagem sem emojis
+        return encodeURIComponent(
+            `PEDIDO RELÓGIOS CLÁSSICOS\n\n` +
+            `PRODUTOS SELECIONADOS:\n${productList}\n\n` +
+            `Total de itens: ${cart.length}\n\n` +
+            `Gostaria de finalizar esta compra. Podemos prosseguir?`
+        );
     }
-    function sendToWhatsApp() { if(cart.length === 0) { alert("Carrinho vazio!"); return; } window.open(`https://wa.me/5511999998888?text=${generateOrderMessage()}`, '_blank'); }
-    
+    function sendToWhatsApp() { 
+        if(cart.length === 0) { alert("Carrinho vazio!"); return; } 
+        window.open(`https://wa.me/5511999998888?text=${generateOrderMessage()}`, '_blank'); 
+    }
+
     function renderProducts() {
         productsGrid.innerHTML = '';
-        products.forEach(prod => {
+        let filtered = products;
+        if (currentGender !== 'all') {
+            filtered = filtered.filter(p => p.gender === currentGender);
+        }
+        if (searchTerm.trim() !== '') {
+            filtered = filtered.filter(p => 
+                p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                p.brand.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+        if (filtered.length === 0) {
+            productsGrid.innerHTML = '<p style="text-align:center; width:100%; padding:2rem;">Nenhum produto encontrado.</p>';
+            return;
+        }
+        filtered.forEach(prod => {
             const card = document.createElement('div'); card.className = 'product-card';
-            card.innerHTML = `<img class="product-img" src="${prod.img}"><div class="product-info"><div class="product-brand">${prod.brand}</div><div class="product-title">${prod.name}</div><div class="price">R$ ${prod.price.toLocaleString('pt-BR')}</div><button class="btn-card add-to-cart" data-id="${prod.id}"><i class="fas fa-cart-plus"></i> Adicionar</button></div>`;
+            card.innerHTML = `
+                <img class="product-img" src="${prod.img}">
+                <div class="product-info">
+                    <div class="product-brand">${prod.brand}</div>
+                    <div class="product-title">${prod.name}</div>
+                    <div class="price">MT ${prod.price.toLocaleString('pt-BR')}</div>
+                    <button class="btn-card add-to-cart" data-id="${prod.id}"><i class="fas fa-cart-plus"></i> Adicionar</button>
+                </div>
+            `;
             productsGrid.appendChild(card);
         });
-        document.querySelectorAll('.add-to-cart').forEach(btn => { btn.addEventListener('click', (e) => { const product = products.find(p => p.id == btn.getAttribute('data-id')); if(product) addToCart(product); }); });
+        document.querySelectorAll('.add-to-cart').forEach(btn => { 
+            btn.addEventListener('click', (e) => { 
+                const product = products.find(p => p.id == btn.getAttribute('data-id')); 
+                if(product) addToCart(product); 
+            }); 
+        });
+
+        const genderMap = {
+            'all': 'Todos os produtos',
+            'masculino': 'Masculino',
+            'feminino': 'Feminino',
+            'smartwatch': 'Smartwatch',
+            'luxo': 'Luxo',
+            'outlet': 'Outlet'
+        };
+        categoryTitle.textContent = genderMap[currentGender] || 'Produtos';
     }
+
+    // Eventos
+    searchInput.addEventListener('input', (e) => {
+        searchTerm = e.target.value;
+        renderProducts();
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const gender = link.getAttribute('data-gender');
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            currentGender = gender;
+            renderProducts();
+            if (window.innerWidth <= 992) {
+                document.getElementById('navMenu').classList.remove('show');
+            }
+        });
+    });
+
     cartIcon.addEventListener('click', openCartSidebar);
     closeCartBtn.addEventListener('click', closeCartSidebar);
     cartOverlay.addEventListener('click', closeCartSidebar);
     checkoutBtn.addEventListener('click', sendToWhatsApp);
+    clearCartBtn.addEventListener('click', () => { if(confirm('Deseja esvaziar o carrinho?')) clearCart(); });
+
     const toggleBtn = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
     if(toggleBtn) toggleBtn.addEventListener('click', () => navMenu.classList.toggle('show'));
-    loadCart();
+
+    // Inicialização
+    localStorage.removeItem('chronos_cart');
+    cart = [];
+    updateCartUI();
     renderProducts();
 </script>
 </body>
