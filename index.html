@@ -158,6 +158,15 @@
         }
         .hero-content h1 { font-size: 3.2rem; font-weight: 700; color: #000000; }
         .hero-content p { margin: 1.5rem 0; color: #4b5565; }
+
+        /* Espaçamento entre os botões */
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
         .btn-primary {
             background: #000000;
             color: #d4af37;
@@ -268,6 +277,34 @@
         .cart-item-name { font-weight: 700; font-size: 0.9rem; }
         .cart-item-brand { font-size: 0.7rem; color: #d4af37; font-weight: 600; }
         .cart-item-price { font-size: 0.85rem; font-weight: 700; color: #1f2e3a; margin-top: 4px; }
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 6px;
+        }
+        .cart-item-qty button {
+            background: #f5f7fa;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            width: 28px;
+            height: 28px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            color: #1f2e3a;
+            font-family: 'Book Antiqua', 'Palatino', 'Georgia', serif;
+        }
+        .cart-item-qty button:hover { background: #000000; color: #d4af37; border-color: #000000; }
+        .cart-item-qty span {
+            font-weight: 700;
+            min-width: 20px;
+            text-align: center;
+        }
         .cart-item-remove { background: none; border: none; color: #dc3545; cursor: pointer; font-size: 1rem; padding: 0.5rem; }
         .cart-footer { padding: 1.5rem; border-top: 1px solid #eef2f8; }
         .cart-total { display: flex; justify-content: space-between; font-weight: 700; font-size: 1.1rem; margin-bottom: 1rem; }
@@ -482,6 +519,7 @@
             .payment-badges span { font-size: 0.6rem; }
             .logo { font-size: 1.4rem; }
             .hero-content h1 { font-size: 2.2rem; }
+            .hero-buttons { gap: 1rem; }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -571,7 +609,6 @@
                 <a href="#" class="footer-logo">Relógios Clássicos</a>
                 <p>Especialistas em alta relojoaria desde 2008. Oferecemos as melhores marcas com garantia de autenticidade e suporte especializado.</p>
                 <div class="social-links">
-                    <!-- Instagram com link correto -->
                     <a href="https://www.instagram.com/relogios.classicos" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
@@ -661,7 +698,7 @@
         { id: 12, name: "Grant Chronograph", brand: "FOSSIL", price: 2490, img: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80", gender: "outlet" }
     ];
 
-    let cart = [];
+    let cart = []; // cada item: { id, name, brand, price, img, quantity }
     let currentGender = 'all';
     let searchTerm = '';
 
@@ -681,21 +718,36 @@
     const navLinks = document.querySelectorAll('.nav-menu a');
     const productSection = document.getElementById('productSection');
 
-    function saveCart() { localStorage.setItem('chronos_cart', JSON.stringify(cart)); updateCartUI(); }
-    function loadCart() { 
-        const saved = localStorage.getItem('chronos_cart'); 
-        cart = saved ? JSON.parse(saved) : []; 
-        updateCartUI(); 
+    // ---------- Funções do Carrinho ----------
+    function saveCart() {
+        localStorage.setItem('chronos_cart', JSON.stringify(cart));
+        updateCartUI();
     }
-    function calculateTotal() { return cart.reduce((sum, item) => sum + item.price, 0); }
+
+    function loadCart() {
+        const saved = localStorage.getItem('chronos_cart');
+        cart = saved ? JSON.parse(saved) : [];
+        updateCartUI();
+    }
+
+    function getTotalItems() {
+        return cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    function calculateTotal() {
+        return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    }
 
     function updateCartUI() {
-        cartCountSpan.innerText = cart.length;
-        if(cart.length === 0) {
+        const totalItems = getTotalItems();
+        cartCountSpan.innerText = totalItems;
+
+        if (cart.length === 0) {
             cartItemsDiv.innerHTML = '<div class="empty-cart">Seu carrinho está vazio.</div>';
             cartTotalSpan.innerHTML = `<span>Total:</span><span>MT 0,00</span>`;
             return;
         }
+
         let html = '';
         cart.forEach(item => {
             html += `
@@ -704,53 +756,115 @@
                     <div class="cart-item-info">
                         <div class="cart-item-name">${item.name}</div>
                         <div class="cart-item-brand">${item.brand}</div>
-                        <div class="cart-item-price">MT ${item.price.toLocaleString('pt-BR')}</div>
+                        <div class="cart-item-price">MT ${(item.price * item.quantity).toLocaleString('pt-BR')}</div>
+                        <div class="cart-item-qty">
+                            <button class="qty-decr" data-id="${item.id}">−</button>
+                            <span>${item.quantity}</span>
+                            <button class="qty-incr" data-id="${item.id}">+</button>
+                        </div>
                     </div>
                     <button class="cart-item-remove" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
                 </div>
             `;
         });
         cartItemsDiv.innerHTML = html;
+
         const total = calculateTotal();
         cartTotalSpan.innerHTML = `<span>Total:</span><span>MT ${total.toLocaleString('pt-BR')}</span>`;
+
+        // Eventos dos botões + e -
+        document.querySelectorAll('.qty-incr').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                changeQuantity(id, 1);
+            });
+        });
+        document.querySelectorAll('.qty-decr').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                changeQuantity(id, -1);
+            });
+        });
+
+        // Eventos do botão de remover (lixeira)
         document.querySelectorAll('.cart-item-remove').forEach(btn => {
-            btn.addEventListener('click', (e) => { removeFromCart(parseInt(btn.getAttribute('data-id'))); });
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.getAttribute('data-id'));
+                removeItemCompletely(id);
+            });
         });
     }
 
-    function addToCart(product) { cart.push({ ...product }); saveCart(); openCartSidebar(); }
-    function removeFromCart(productId) { 
-        const index = cart.findIndex(item => item.id === productId); 
-        if(index !== -1) { cart.splice(index, 1); saveCart(); } 
-    }
-    function clearCart() { cart = []; saveCart(); updateCartUI(); }
-
-    function openCartSidebar() { cartSidebar.classList.add('open'); cartOverlay.classList.add('active'); }
-    function closeCartSidebar() { cartSidebar.classList.remove('open'); cartOverlay.classList.remove('active'); }
-
-    // Função para rolar suavemente até a seção de produtos
-    function scrollToProductSection() {
-        if (productSection) {
-            productSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    function changeQuantity(productId, delta) {
+        const item = cart.find(p => p.id === productId);
+        if (!item) return;
+        const newQty = item.quantity + delta;
+        if (newQty <= 0) {
+            cart = cart.filter(p => p.id !== productId);
+        } else {
+            item.quantity = newQty;
         }
+        saveCart();
     }
 
+    function removeItemCompletely(productId) {
+        cart = cart.filter(p => p.id !== productId);
+        saveCart();
+    }
+
+    function addToCart(product) {
+        const existing = cart.find(p => p.id === product.id);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ ...product, quantity: 1 });
+        }
+        saveCart();
+        openCartSidebar();
+    }
+
+    function clearCart() {
+        cart = [];
+        saveCart();
+        updateCartUI();
+    }
+
+    // ---------- Sidebar ----------
+    function openCartSidebar() {
+        cartSidebar.classList.add('open');
+        cartOverlay.classList.add('active');
+    }
+
+    function closeCartSidebar() {
+        cartSidebar.classList.remove('open');
+        cartOverlay.classList.remove('active');
+    }
+
+    // ---------- WhatsApp ----------
     function generateOrderMessage() {
-        if(cart.length === 0) return "Olá! Gostaria de fazer um pedido, mas meu carrinho está vazio.";
-        let productList = cart.map((item, idx) => `${idx+1} • ${item.brand} ${item.name}`).join('\n');
+        if (cart.length === 0) return "Olá! Gostaria de fazer um pedido, mas meu carrinho está vazio.";
+        let productList = cart.map((item, idx) =>
+            `${idx+1} • ${item.brand} ${item.name} (x${item.quantity})`
+        ).join('\n');
+        const totalItems = getTotalItems();
         return encodeURIComponent(
             `PEDIDO RELÓGIOS CLÁSSICOS\n\n` +
             `PRODUTOS SELECIONADOS:\n${productList}\n\n` +
-            `Total de itens: ${cart.length}\n\n` +
+            `Total de itens: ${totalItems}\n` +
+            `Valor total: MT ${calculateTotal().toLocaleString('pt-BR')}\n\n` +
             `Gostaria de finalizar esta compra. Podemos prosseguir?`
         );
     }
-    function sendToWhatsApp() { 
-        if(cart.length === 0) { alert("Carrinho vazio!"); return; } 
-        // Número atualizado: Moçambique +258 845583974
-        window.open(`https://wa.me/258845583974?text=${generateOrderMessage()}`, '_blank'); 
+
+    function sendToWhatsApp() {
+        if (cart.length === 0) {
+            alert("Carrinho vazio!");
+            return;
+        }
+        window.open(`https://wa.me/258845583974?text=${generateOrderMessage()}`, '_blank');
     }
 
+    // ---------- Renderização de Produtos ----------
     function renderProducts() {
         productsGrid.innerHTML = '';
         let filtered = products;
@@ -758,9 +872,10 @@
             filtered = filtered.filter(p => p.gender === currentGender);
         }
         if (searchTerm.trim() !== '') {
-            filtered = filtered.filter(p => 
-                p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                p.brand.toLowerCase().includes(searchTerm.toLowerCase())
+            const term = searchTerm.toLowerCase();
+            filtered = filtered.filter(p =>
+                p.name.toLowerCase().includes(term) ||
+                p.brand.toLowerCase().includes(term)
             );
         }
         if (filtered.length === 0) {
@@ -768,7 +883,8 @@
             return;
         }
         filtered.forEach(prod => {
-            const card = document.createElement('div'); card.className = 'product-card';
+            const card = document.createElement('div');
+            card.className = 'product-card';
             card.innerHTML = `
                 <img class="product-img" src="${prod.img}">
                 <div class="product-info">
@@ -780,11 +896,12 @@
             `;
             productsGrid.appendChild(card);
         });
-        document.querySelectorAll('.add-to-cart').forEach(btn => { 
-            btn.addEventListener('click', (e) => { 
-                const product = products.find(p => p.id == btn.getAttribute('data-id')); 
-                if(product) addToCart(product); 
-            }); 
+
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const product = products.find(p => p.id == btn.getAttribute('data-id'));
+                if (product) addToCart(product);
+            });
         });
 
         const genderMap = {
@@ -798,21 +915,19 @@
         categoryTitle.textContent = genderMap[currentGender] || 'Produtos';
     }
 
-    // Função que aplica filtro, renderiza e rola para a seção
     function applyFilterAndScroll(gender) {
         currentGender = gender;
         renderProducts();
-        scrollToProductSection();
+        productSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // Função que aplica busca, renderiza e rola
     function applySearchAndScroll() {
         searchTerm = searchInput.value.trim();
         renderProducts();
-        scrollToProductSection();
+        productSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // Eventos
+    // ---------- Eventos ----------
     searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -842,13 +957,15 @@
     closeCartBtn.addEventListener('click', closeCartSidebar);
     cartOverlay.addEventListener('click', closeCartSidebar);
     checkoutBtn.addEventListener('click', sendToWhatsApp);
-    clearCartBtn.addEventListener('click', () => { if(confirm('Deseja esvaziar o carrinho?')) clearCart(); });
+    clearCartBtn.addEventListener('click', () => {
+        if (confirm('Deseja esvaziar o carrinho?')) clearCart();
+    });
 
     const toggleBtn = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
-    if(toggleBtn) toggleBtn.addEventListener('click', () => navMenu.classList.toggle('show'));
+    if (toggleBtn) toggleBtn.addEventListener('click', () => navMenu.classList.toggle('show'));
 
-    // Inicialização
+    // ---------- Inicialização ----------
     localStorage.removeItem('chronos_cart');
     cart = [];
     updateCartUI();
